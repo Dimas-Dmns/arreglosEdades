@@ -56,3 +56,10 @@ function pintarArregloIzquierda() {
 
     document.getElementById("tablaIzquierda").innerHTML = contenido;
 }
+
+
+function eliminarIzquierdo(indice) {
+    edadesIzquierda.splice(indice, 1);
+
+    pintarArregloIzquierda();
+}
