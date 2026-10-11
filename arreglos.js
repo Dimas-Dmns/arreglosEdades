@@ -93,3 +93,10 @@ function pintarArregloDerecha() {
 
     document.getElementById("tablaDerecha").innerHTML = contenido;
 }
+
+
+function eliminarDerecho(indice) {
+    edadesDerecha.splice(indice, 1);
+
+    pintarArregloDerecha();
+}
