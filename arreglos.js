@@ -1,30 +1,35 @@
-// PARTE 3: CREAR LOS ARREGLOS
-
-let edadesIzquierda = [];
-let edadesDerecha = [];
-
+let edadesIzquierda = [12, 15];
+let edadesDerecha = [20, 25];
 
 
 function agregarEdad() {
-    let cajaEdad = document.getElementById("txtEdad");
-    let edad = Number(cajaEdad.value);
+    let cajaEdad = document.getElementById("edad");
+    let valor = cajaEdad.value;
 
-    if (cajaEdad.value.trim() === "") {
-        alert("Ingresa una edad.");
+    // Validar que la caja no esté vacía
+    if (valor.trim() === "") {
+        alert("Por favor, ingresa una edad.");
         return;
     }
 
+    let edad = Number(valor);
+
+    // Validar que sea un número entero entre 0 y 120
     if (!Number.isInteger(edad) || edad < 0 || edad > 120) {
         alert("Ingresa una edad entera entre 0 y 120.");
         return;
     }
 
+    // Agregar la edad al arreglo izquierdo
     edadesIzquierda.push(edad);
 
+    // Limpiar la caja de texto
     cajaEdad.value = "";
 
+    // Actualizar la tabla izquierda
     pintarArregloIzquierda();
 }
+
 
 
 function pintarArregloIzquierda() {
@@ -38,6 +43,7 @@ function pintarArregloIzquierda() {
                 <td>
                     <button
                         type="button"
+                        class="btn-eliminar"
                         onclick="eliminarIzquierdo(${indice})">
                         Eliminar
                     </button>
@@ -46,8 +52,9 @@ function pintarArregloIzquierda() {
                 <td>
                     <button
                         type="button"
+                        class="btn-mover"
                         onclick="moverHaciaDerecha(${indice})">
-                        Mover ➜
+                        ➜
                     </button>
                 </td>
             </tr>
@@ -64,6 +71,7 @@ function eliminarIzquierdo(indice) {
     pintarArregloIzquierda();
 }
 
+
 function pintarArregloDerecha() {
     let contenido = "";
 
@@ -73,8 +81,9 @@ function pintarArregloDerecha() {
                 <td>
                     <button
                         type="button"
+                        class="btn-mover"
                         onclick="moverHaciaIzquierda(${indice})">
-                        ⬅ Mover
+                        ⬅
                     </button>
                 </td>
 
@@ -83,6 +92,7 @@ function pintarArregloDerecha() {
                 <td>
                     <button
                         type="button"
+                        class="btn-eliminar"
                         onclick="eliminarDerecho(${indice})">
                         Eliminar
                     </button>
@@ -95,6 +105,7 @@ function pintarArregloDerecha() {
 }
 
 
+
 function eliminarDerecho(indice) {
     edadesDerecha.splice(indice, 1);
 
@@ -102,24 +113,37 @@ function eliminarDerecho(indice) {
 }
 
 
+
 function moverHaciaDerecha(indice) {
+    // Obtener la edad seleccionada
     let edad = edadesIzquierda[indice];
 
+    // Agregarla al arreglo derecho
     edadesDerecha.push(edad);
 
+    // Eliminarla del arreglo izquierdo
     edadesIzquierda.splice(indice, 1);
 
+    // Actualizar ambas tablas
     pintarArregloIzquierda();
     pintarArregloDerecha();
 }
+
 
 function moverHaciaIzquierda(indice) {
+    // Obtener la edad seleccionada
     let edad = edadesDerecha[indice];
 
+    // Agregarla al arreglo izquierdo
     edadesIzquierda.push(edad);
 
+    // Eliminarla del arreglo derecho
     edadesDerecha.splice(indice, 1);
 
+    // Actualizar ambas tablas
     pintarArregloIzquierda();
     pintarArregloDerecha();
 }
+
+pintarArregloIzquierda();
+pintarArregloDerecha();
