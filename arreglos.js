@@ -112,3 +112,14 @@ function moverHaciaDerecha(indice) {
     pintarArregloIzquierda();
     pintarArregloDerecha();
 }
+
+function moverHaciaIzquierda(indice) {
+    let edad = edadesDerecha[indice];
+
+    edadesIzquierda.push(edad);
+
+    edadesDerecha.splice(indice, 1);
+
+    pintarArregloIzquierda();
+    pintarArregloDerecha();
+}
